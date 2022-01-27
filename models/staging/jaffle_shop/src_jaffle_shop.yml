@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: tonal-nucleus-339323
+    schema: dbt_tutorial
+    tables:
+      - name: customers
+      - name: orders
+    

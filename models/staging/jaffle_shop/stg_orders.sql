@@ -2,4 +2,4 @@ select id as order_id
 , user_id as customer_id
 , order_date
 , status
-from `tonal-nucleus-339323.dbt_tutorial.orders`
+from {{ source('jaffle_shop','orders') }}
