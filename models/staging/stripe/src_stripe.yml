@@ -2,10 +2,12 @@ version: 2
 
 sources:
   - name: stripe
+    description: A clone of a Postgres application database.
     database: tonal-nucleus-339323
     schema: dbt_tutorial
     tables:
       - name: payments
+        description: Raw payments data.
         loaded_at_field: _batched_at
         freshness:
             warn_after: {count: 12, period: hour}
