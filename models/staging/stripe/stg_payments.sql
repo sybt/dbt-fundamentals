@@ -4,4 +4,4 @@ select id as payment_id
 , status
 , amount/100 as dollar_amount
 , created as created_at
-from {{ source('stripe_payments','payments') }}
+from {{ source('stripe','payments') }}

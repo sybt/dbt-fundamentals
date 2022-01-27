@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: stripe_payments
+  - name: stripe
     database: tonal-nucleus-339323
     schema: dbt_tutorial
     tables:
