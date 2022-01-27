@@ -1,19 +1,11 @@
-
 {{ config(materialized='table') }}
 
 with customers as (
-    select id as customer_id
-    , first_name
-    , last_name
-    from `tonal-nucleus-339323.dbt_tutorial.customers`
+    select * from {{ ref('stg_customers')}}
 ),
 
 orders as (
-    select id as order_id
-    , user_id as customer_id
-    , order_date
-    , status
-    from `tonal-nucleus-339323.dbt_tutorial.orders`
+    select * from {{ ref('stg_orders')}}
 ),
 
 customer_orders as (
@@ -25,7 +17,7 @@ customer_orders as (
     group by customer_id
 ),
 
-final as (
+final_dim_customers as (
     select c.customer_id
     , c.first_name
     , c.last_name
@@ -36,4 +28,4 @@ final as (
     left join customer_orders co on c.customer_id = co.customer_id
 )
 
-select * from final
+select * from final_dim_customers
