@@ -16,4 +16,9 @@ models:
       - name: order_status
         tests:
           - accepted_values:
-            values: ['placed', 'shipped', 'completed', 'returned']
+              values:
+                - shipped
+                - completed
+                - return_pending
+                - placed
+                - returned
