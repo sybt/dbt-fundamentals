@@ -35,4 +35,4 @@ final_dim_customers as (
     left join customer_orders co on c.customer_id = co.customer_id
 )
 
-select sum(lifetime_value) from final_dim_customers
+select * from final_dim_customers
