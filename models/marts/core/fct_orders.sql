@@ -8,7 +8,7 @@ payments as (
 
 order_payments as (
     select order_id
-    , sum(case when status = 'success' then dollar_amount end) as dollar_amount
+    , sum(case when payment_status = 'success' then dollar_amount end) as dollar_amount
     from payments
     group by order_id
 ),
