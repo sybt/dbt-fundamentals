@@ -1,4 +1,6 @@
-orders as (
+{{ config(materialized='table') }}
+
+with orders as (
     select * from {{ ref('stg_orders')}}
 ),
 
@@ -16,7 +18,6 @@ order_payments as (
 final_fct_orders as (
     select o.order_id
     , o.customer_id
-    , o.order_id
     , o.order_date
     , coalesce(op.dollar_amount,0) as dollar_amount
     from orders o
