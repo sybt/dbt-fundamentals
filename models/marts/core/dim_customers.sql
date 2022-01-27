@@ -9,18 +9,17 @@ orders as (
 ),
 
 payments as (
-    select * from {{ ref('stg_payments')}}
+    select * from {{ ref('fct_orders')}}
 ),
 
 customer_orders as (
-    select customer_id
+    select o.customer_id
     , min(o.order_date) as first_order_date
     , max(o.order_date) as most_recent_order_date
     , count(o.order_id) as number_of_orders
     , sum(p.dollar_amount) as lifetime_value
     from orders o
     left join payments p on o.order_id = p.order_id
-    where p.status = 'success'
     group by customer_id
 ),
 
@@ -36,4 +35,4 @@ final_dim_customers as (
     left join customer_orders co on c.customer_id = co.customer_id
 )
 
-select * from final_dim_customers
+select sum(lifetime_value) from final_dim_customers
